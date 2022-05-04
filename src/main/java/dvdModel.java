@@ -1,5 +1,8 @@
 package src.main.java;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class dvdModel {
@@ -121,7 +124,6 @@ public class dvdModel {
         for (String i : dvdLibrary.keySet()) {
             System.out.println(i);
         }
-
         display.startAgain();
     }
 
@@ -132,6 +134,28 @@ public class dvdModel {
 
         dvdLibrary.get(Title).put(dvdData, newDvdData);
         System.out.println(Title + ": " + dvdLibrary.get(Title));
+    }
+
+
+    public static void writeToFile(){
+        try {
+            PrintWriter out = new PrintWriter(new FileWriter("OutFile.txt"));
+            // iterate map entries
+            for (Map.Entry<String, HashMap> entry :
+                    dvdLibrary.entrySet()) {
+
+                // put key and value separated by a colon
+                out.write(entry.getKey() + ":"
+                        + entry.getValue());
+                // new line
+                out.println();
+            }
+            out.flush();
+            out.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
