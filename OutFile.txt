@@ -1,0 +1,2 @@
+Narnia:{Directors Name=Steve, MPAA Rating=6, User Rating=Good Film, Studio=Warner, Release Date=2008}
+Harry Potter:{Directors Name=Connor, MPAA Rating=4, User Rating=Bad, Studio=Disney, Release Date=2006}

@@ -1,5 +1,3 @@
-package src.main.java;
-
 import java.util.*;
 import java.io.*;
 
@@ -9,7 +7,8 @@ public class dvdController {
     static private dvdDisplay display;
 
     public static void main(String[] args){
-        controlOptions();
+        library.readFromFile();
+        //controlOptions();
     }
 
     public static void controlOptions(){

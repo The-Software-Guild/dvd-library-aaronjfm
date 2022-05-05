@@ -1,8 +1,4 @@
-package src.main.java;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 
 public class dvdModel {
@@ -124,7 +120,8 @@ public class dvdModel {
         for (String i : dvdLibrary.keySet()) {
             System.out.println(i);
         }
-        display.startAgain();
+        readFromFile();
+        //display.startAgain();
     }
 
     public static void editDvdData(String Title, String dvdData){
@@ -158,4 +155,62 @@ public class dvdModel {
         }
     }
 
+    public static void readFromFile(){
+            // read text file to HashMap
+            Map<String, HashMap> mapFromFile
+                    = HashMapFromTextFile();
+
+            // iterate over HashMap entries
+            for (Map.Entry<String, HashMap> entry :
+                    mapFromFile.entrySet()) {
+                System.out.println(entry.getKey() + " : "
+                        + entry.getValue());
+            }
+        }
+
+    public static Map<String, HashMap> HashMapFromTextFile(){
+        HashMap<String, HashMap> map
+                = new HashMap<String, HashMap>();
+        BufferedReader br = null;
+        try {
+            File file = new File("OutFile.txt");
+            br = new BufferedReader(new FileReader(file));
+            String line = null;
+
+            // read file line by line
+            while ((line = br.readLine()) != null) {
+                // split the line by :
+                String[] topLevel = line.split(":");
+                // first part is name, second is number
+                String titleKey = topLevel[0].trim();
+
+                String[] lowLevel = topLevel[1].split("=");
+
+                HashMap<String, String> mapValue
+                        = new HashMap<String, String>();
+
+                for(int i =0; i<5;i+=2){
+                    String lowLevelKey = lowLevel[i].trim();
+                    String lowLevelValue = lowLevel[i+1].trim();
+                    mapValue.put(lowLevelKey, lowLevelValue);
+                }
+                map.put(titleKey,mapValue);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            // Always close the BufferedReader
+            if (br != null) {
+                try {
+                    br.close();
+                }
+                catch (Exception e) {
+                };
+            }
+        }
+        return map;
+        }
 }
