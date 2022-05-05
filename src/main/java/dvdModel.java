@@ -120,8 +120,7 @@ public class dvdModel {
         for (String i : dvdLibrary.keySet()) {
             System.out.println(i);
         }
-        readFromFile();
-        //display.startAgain();
+        display.startAgain();
     }
 
     public static void editDvdData(String Title, String dvdData){
