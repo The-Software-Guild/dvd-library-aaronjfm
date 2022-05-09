@@ -30,7 +30,7 @@ public class DvdController {
                         removeDvd();
                         break;
                     case 3:
-                        editDvd(); //not functioning
+                        editDvd();
                         break;
                     case 4:
                         searchDvd();
