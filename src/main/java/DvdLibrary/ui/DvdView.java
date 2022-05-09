@@ -30,7 +30,7 @@ public class DvdView {
         String userNote = io.readString("Please enter your rating or note");
 
         Dvd currentDvd = new Dvd(title);
-        currentDvd.setreleaseDate(releaseDate);
+        currentDvd.setReleaseDate(releaseDate);
         currentDvd.setMpaaRating(mpaaRating);
         currentDvd.setDirectorName(director);
         currentDvd.setStudio(studio);

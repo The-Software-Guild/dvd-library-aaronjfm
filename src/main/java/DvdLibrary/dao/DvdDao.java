@@ -42,7 +42,7 @@ public class DvdDao {
         Dvd newDvd = dvd;
         switch (option){
             case 1:
-                newDvd.setreleaseDate(change);
+                newDvd.setReleaseDate(change);
                 addDvd(newDvd.getTitle(),newDvd);
                 dvds.remove(dvd.getTitle());
                 break;
@@ -76,7 +76,7 @@ public class DvdDao {
         String title = dvdTokens[0];
 
         Dvd dvdFromFile = new Dvd(title);
-        dvdFromFile.setreleaseDate(dvdTokens[1]);
+        dvdFromFile.setReleaseDate(dvdTokens[1]);
         dvdFromFile.setMpaaRating(dvdTokens[2]);
         dvdFromFile.setDirectorName(dvdTokens[3]);
         dvdFromFile.setStudio(dvdTokens[4]);

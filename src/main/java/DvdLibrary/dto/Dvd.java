@@ -20,7 +20,7 @@ public class Dvd {
         return releaseDate;
     }
 
-    public void setreleaseDate(String firstName) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
