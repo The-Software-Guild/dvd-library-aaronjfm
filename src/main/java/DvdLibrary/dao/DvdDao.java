@@ -53,15 +53,18 @@ public class DvdDao {
                 break;
             case 3:
                 dvd.setDirectorName(change);
-                writeLibrary();
+                addDvd(newDvd.getTitle(),newDvd);
+                dvds.remove(dvd.getTitle());
                 break;
             case 4:
                 dvd.setStudio(change);
-                writeLibrary();
+                addDvd(newDvd.getTitle(),newDvd);
+                dvds.remove(dvd.getTitle());
                 break;
             case 5:
                 dvd.setUserNote(change);
-                writeLibrary();
+                addDvd(newDvd.getTitle(),newDvd);
+                dvds.remove(dvd.getTitle());
                 break;
         }
         return dvd;
