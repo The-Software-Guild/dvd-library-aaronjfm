@@ -16,7 +16,7 @@ public class DvdDao {
     public Dvd addDvd(String title, Dvd dvd) throws DvdDaoException {
         loadRoster();
         Dvd newDvd = dvds.put(title, dvd);
-        writeRoster();
+        writeLibrary();
         return newDvd;
     }
 
@@ -33,8 +33,38 @@ public class DvdDao {
     public Dvd removeDvd(String title) throws DvdDaoException {
         loadRoster();
         Dvd removedDvd = dvds.remove(title);
-        writeRoster();
+        writeLibrary();
         return removedDvd;
+    }
+
+    public Dvd editDvd(Dvd dvd, String change, int option) throws DvdDaoException {
+        loadRoster();
+        Dvd newDvd = dvd;
+        switch (option){
+            case 1:
+                newDvd.setreleaseDate(change);
+                addDvd(newDvd.getTitle(),newDvd);
+                dvds.remove(dvd.getTitle());
+                break;
+            case 2:
+                newDvd.setMpaaRating(change);
+                addDvd(newDvd.getTitle(),newDvd);
+                dvds.remove(dvd.getTitle());
+                break;
+            case 3:
+                dvd.setDirectorName(change);
+                writeLibrary();
+                break;
+            case 4:
+                dvd.setStudio(change);
+                writeLibrary();
+                break;
+            case 5:
+                dvd.setUserNote(change);
+                writeLibrary();
+                break;
+        }
+        return dvd;
     }
 
 
@@ -88,7 +118,7 @@ public class DvdDao {
         return dvdAsText;
     }
 
-    private void writeRoster() throws DvdDaoException {
+    private void writeLibrary() throws DvdDaoException {
         PrintWriter out;
 
         try {

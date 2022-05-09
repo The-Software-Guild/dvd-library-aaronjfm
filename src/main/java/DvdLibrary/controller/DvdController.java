@@ -84,9 +84,10 @@ public class DvdController {
         view.displayRemoveResult(removedDvd);
     }
 
-    private void editDvd(){
+    private void editDvd() throws DvdDaoException{
         view.displayEditDvdBanner();
         view.editDvdOptions();
+        view.displayEditResult();
     }
 
     private void unknownCommand() {

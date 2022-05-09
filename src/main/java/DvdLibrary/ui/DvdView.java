@@ -1,5 +1,6 @@
 package DvdLibrary.ui;
 
+import DvdLibrary.dao.DvdDaoException;
 import DvdLibrary.dto.Dvd;
 import DvdLibrary.dao.DvdDao;
 
@@ -97,7 +98,7 @@ public class DvdView {
         io.print("=== Edit Dvd ===");
     }
 
-    public void editDvdOptions(){
+    public void editDvdOptions() throws DvdDaoException {
         String[] options = {"Release Date", "MPAA Rating", "Directors Name", "Studio", "User Note"};
         String title = io.readString("Please enter the DVD title");
         io.print("1: Edit Release Date");
@@ -105,28 +106,19 @@ public class DvdView {
         io.print("3: Edit Directors Name");
         io.print("4: Edit Studio");
         io.print("5: Edit User Note");
-        int result = io.readInt("Please select from the above choices.", 1, 5);
+        int option = io.readInt("Please select from the above choices.", 1, 5);
 
-        io.print("You have chosen to edit the " + options[result-1]);
+        io.print("You have chosen to edit the " + options[option-1]);
 
-        String change = io.readString("Please enter the corrected " + options[result-1]);
+        String change = io.readString("Please enter the corrected " + options[option-1]);
+        Dvd dvd = dao.getDvd(title);
 
-
-        switch (result){
-            case 1:
-                dao.dvds.get(title).setreleaseDate(change);
-        }
-
+        dao.editDvd(dvd,change,option);
     }
 
 
-    public void displayEditResult(Dvd dvd) {
-        if(dvd != null){
-            io.print("Dvd successfully edited.");
-        }else{
-            io.print("No such Dvd.");
-        }
-        io.readString("Please hit enter to continue.");
+    public void displayEditResult() {
+        io.print("DVD Updated");
     }
 
 
